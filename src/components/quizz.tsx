@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { LoadingQuizz } from "./loadingQuizz";
 import { IQuizz, IQuizzDatabase } from "@/models/quizz";
 import { QuizzEntry } from "./quizzEntry";
-import { PlayerProvider } from "./player";
+import { PlayerProvider } from "./playerProvider";
 import {
   PaginationItems,
   PaginationNextTrigger,

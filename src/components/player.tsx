@@ -1,41 +1,10 @@
 "use client";
 
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Button } from "@chakra-ui/react";
 import { LuPlay } from "react-icons/lu";
 import "./player.css";
-
-declare global {
-  interface Window {
-    YT: typeof YT;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
-
-const YouTubeApiReadyContext = createContext<boolean>(false);
-
-export function PlayerProvider({ children }: { children: React.ReactNode }) {
-  const [youTubeApiReady, setYouTubeApiReady] = useState<boolean>(false);
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(script);
-    window.onYouTubeIframeAPIReady = () => {
-      setYouTubeApiReady(true);
-    };
-  }, []);
-  return (
-    <YouTubeApiReadyContext.Provider value={youTubeApiReady}>
-      {children}
-    </YouTubeApiReadyContext.Provider>
-  );
-}
+import { YouTubeApiReadyContext } from "@/contexts/youTubeApiReadyContext";
 
 export function Player({
   resolved,
