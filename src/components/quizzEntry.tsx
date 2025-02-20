@@ -18,7 +18,9 @@ export function QuizzEntry({
   const [resolved, setResolved] = useState<boolean>(false);
   const checkGuess = useCallback(
     (guess: string) => {
-      const isCorrect = new RegExp(quizzEntry.show, "i").test(guess);
+      const sanitizedShowName = sanitize(quizzEntry.show);
+      const sanitizedGuess = sanitize(guess);
+      const isCorrect = sanitizedShowName === sanitizedGuess;
       if (isCorrect) {
         setResolved(true);
         onResolved();
@@ -79,4 +81,11 @@ export function QuizzEntry({
       </Field>
     </Flex>
   );
+}
+
+function sanitize(s: string = ""): string {
+  return s
+    .toLowerCase()
+    .replace(/\b(the|a|an|of|and|in|on|at|to|for|with|from|by)\b/gi, "")
+    .replace(/[^a-zA-Z]/g, "");
 }
