@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Provider } from "@/components/ui/provider";
-import { Container } from "@chakra-ui/react";
+import { Box, Container, Flex, Link, Text } from "@chakra-ui/react";
+import { LuGithub } from "react-icons/lu";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +17,25 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Provider>
-          <Container p="3" pt="9" pb="9" maxW="lg">
-            {children}
+          <Container maxW="lg">
+            <Flex direction="column" p="3" pt="9" pb="9" minH="vh">
+              {children}
+              <Box flexGrow="1"></Box>
+              <Flex
+                as="footer"
+                alignItems="center"
+                justifyContent="center"
+                gap="3"
+              >
+                <Link
+                  href="https://github.com/davidballester/soundtrack-quizz"
+                  target="_blank"
+                >
+                  <LuGithub />
+                  <Text>David Ballester Mena</Text>
+                </Link>
+              </Flex>
+            </Flex>
           </Container>
         </Provider>
       </body>
