@@ -1,7 +1,7 @@
 import { IQuizzDatabaseEntry } from "@/models/quizz";
 import { Player } from "./player";
-import { useCallback, useState } from "react";
-import { Button, Flex, Input } from "@chakra-ui/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Box, Button, Flex, Input } from "@chakra-ui/react";
 import { Field } from "./ui/field";
 import { InputGroup } from "./ui/input-group";
 import { LuBadge, LuBadgeCheck, LuBadgeX, LuLightbulb } from "react-icons/lu";
@@ -31,10 +31,8 @@ export function QuizzEntry({
     [setError, onResolved]
   );
   return (
-    <Flex direction="column" gap="4">
+    <Flex direction="column" gap="4" w="full">
       <Player
-        width={640}
-        height={480}
         resolved={resolved}
         videoId={quizzEntry.videoId}
         durationInSeconds={quizzEntry.durationInSeconds}

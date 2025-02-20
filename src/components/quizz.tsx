@@ -37,31 +37,39 @@ export function Quizz({
   return (
     <PlayerProvider>
       {resolved === quizz.length ? <QuizzSuccess /> : null}
-      <Flex direction="column" gap="8" align="center">
-        {quizz.map((quizzEntry, index) => (
-          <Box
-            key={quizzEntry.videoId}
-            hidden={index !== currentQuizEntryIndex}
-          >
-            <QuizzEntry
-              quizzEntry={quizzEntry}
-              onResolved={() => setResolved(resolved + 1)}
-            />
-          </Box>
-        ))}
-        <PaginationRoot
-          count={quizz.length}
-          pageSize={1}
-          defaultPage={1}
-          onPageChange={(e) => setCurrentQuizzEntryIndex(e.page - 1)}
-        >
-          <HStack>
-            <PaginationPrevTrigger />
-            <PaginationItems />
-            <PaginationNextTrigger />
-          </HStack>
-        </PaginationRoot>
-      </Flex>
+      <Box display="grid">
+        <Box gridArea="1 / 1">
+          <LoadingQuizz />
+        </Box>
+        <Box gridArea="1 / 1">
+          <Flex direction="column" gap="8" align="center">
+            {quizz.map((quizzEntry, index) => (
+              <Box
+                key={quizzEntry.videoId}
+                hidden={index !== currentQuizEntryIndex}
+                w="full"
+              >
+                <QuizzEntry
+                  quizzEntry={quizzEntry}
+                  onResolved={() => setResolved(resolved + 1)}
+                />
+              </Box>
+            ))}
+            <PaginationRoot
+              count={quizz.length}
+              pageSize={1}
+              defaultPage={1}
+              onPageChange={(e) => setCurrentQuizzEntryIndex(e.page - 1)}
+            >
+              <HStack>
+                <PaginationPrevTrigger />
+                <PaginationItems />
+                <PaginationNextTrigger />
+              </HStack>
+            </PaginationRoot>
+          </Flex>
+        </Box>
+      </Box>
     </PlayerProvider>
   );
 }

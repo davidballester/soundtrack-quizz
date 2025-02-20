@@ -9,7 +9,7 @@ export default function Home() {
   const [showTryAgain, setShowTryAgain] = useState<boolean>(false);
   return (
     <Flex direction="column" gap="6">
-      <Box textAlign="center">
+      <Box textAlign="center" as="header">
         <Text as="h2" textStyle="7xl">
           Guess the TV show!
         </Text>

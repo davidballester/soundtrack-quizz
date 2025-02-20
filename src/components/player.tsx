@@ -1,23 +1,18 @@
 "use client";
 
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { LuPlay } from "react-icons/lu";
-import "./player.css";
 import { YouTubeApiReadyContext } from "@/contexts/youTubeApiReadyContext";
 
 export function Player({
   resolved,
   videoId,
-  width,
-  height,
   startAtSeconds = 15,
   durationInSeconds = 3,
 }: {
   resolved: boolean;
   videoId: string;
-  width: number;
-  height: number;
   startAtSeconds?: number;
   durationInSeconds?: number;
 }) {
@@ -42,8 +37,26 @@ export function Player({
     play();
   }, [player, started]);
   return (
-    <div className={`player ${started ? "started" : ""}`}>
-      <div className={`blur-overlay ${resolved ? "hidden" : ""}`}>
+    <Box display="grid">
+      <Box gridArea="1 / 1">
+        <iframe
+          id={videoId}
+          width="100%"
+          src={`http://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=0&controls=0&fs=0&playsinline=1&disablekb=1&color=white`}
+          style={{ border: "none", aspectRatio: "16 / 9" }}
+        ></iframe>
+      </Box>
+      <Flex
+        w="full"
+        h="full"
+        background="gray.900"
+        opacity={resolved ? 0 : 1}
+        transition="opacity 0.2s ease-out"
+        alignItems="center"
+        justifyContent="center"
+        pointerEvents={resolved || !started ? "none" : "all"}
+        gridArea="1 / 1"
+      >
         <Button
           size="2xl"
           onClick={play}
@@ -54,14 +67,8 @@ export function Player({
         >
           <LuPlay />
         </Button>
-      </div>
-      <iframe
-        id={videoId}
-        width={width}
-        height={height}
-        src={`http://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=0&controls=0&fs=0&playsinline=1&disablekb=1&color=white`}
-      ></iframe>
-    </div>
+      </Flex>
+    </Box>
   );
 }
 

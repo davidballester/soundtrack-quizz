@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Provider>
-          <Container p="3" pt="9" pb="9">
+          <Container p="3" pt="9" pb="9" maxW="lg">
             {children}
           </Container>
         </Provider>
