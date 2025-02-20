@@ -9,7 +9,8 @@
   },
   {
     "show": "new girl",
-    "videoId": "aW3LEVGQ-lE"
+    "videoId": "aW3LEVGQ-lE",
+    "startAtSeconds": 3
   },
   {
     "show": "the walking dead",
@@ -21,19 +22,20 @@
   },
   {
     "show": "the big bang theory",
-    "videoId": "kCHGDRHZ4eU"
+    "videoId": "20i5eqwK178",
+    "startAtSeconds": 10
   },
   {
     "show": "the flintstones",
-    "videoId": "l0UkoZzJfFA"
+    "videoId": "HJI4uqkv2bU"
   },
   {
     "show": "the leftovers",
-    "videoId": "rLSH-81yT7s"
+    "videoId": "hfzzuN7ErS0"
   },
   {
     "show": "carmen sandiego",
-    "videoId": "s1EIUP8tvbE"
+    "videoId": "ToWuQSpROw0"
   },
   {
     "show": "mad men",
@@ -41,7 +43,8 @@
   },
   {
     "show": "scooby doo",
-    "videoId": "0_C2HJvtRDY"
+    "videoId": "JI-KMDm8x0U",
+    "startAtSeconds": 10
   },
   {
     "show": "buffy",
@@ -57,11 +60,12 @@
   },
   {
     "show": "frasier",
-    "videoId": "GpemacqzdtE"
+    "videoId": "GpemacqzdtE",
+    "startAtSeconds": 10
   },
   {
     "show": "seinfeld",
-    "videoId": "YlFA-36f4CI"
+    "videoId": "RWak0i_iqnM"
   },
   {
     "show": "lost",
@@ -74,10 +78,6 @@
   {
     "show": "the love boat",
     "videoId": "1JE_qMF0etw"
-  },
-  {
-    "show": "orange is the new black",
-    "videoId": "fBITGyJynfA"
   },
   {
     "show": "law & order",
@@ -117,7 +117,8 @@
   },
   {
     "show": "star trek",
-    "videoId": "8D3J5HeJaoc"
+    "videoId": "8D3J5HeJaoc",
+    "startAtSeconds": "35"
   },
   {
     "show": "curb your enthusiasm",
@@ -132,16 +133,8 @@
     "videoId": "jfVBrpIhH60"
   },
   {
-    "show": "the muppet show",
-    "videoId": "EJ9yAV8uQ7g"
-  },
-  {
     "show": "the wire",
     "videoId": "TraSFcARVwM"
-  },
-  {
-    "show": "cheers",
-    "videoId": "rS0VQOHX7lM"
   },
   {
     "show": "game of thrones",

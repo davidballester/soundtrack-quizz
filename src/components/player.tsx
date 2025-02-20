@@ -124,7 +124,6 @@ function usePlayer({ videoId }: { videoId: string }): {
       },
     });
     setPlayer(newPlayer);
-    return () => newPlayer.stopVideo();
   }, [youTubeApiReady, videoId, setStarted, setReady]);
   return { player, ready, started };
 }

@@ -8,7 +8,7 @@
   .blur-overlay {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.95);
+    background: black;
     backdrop-filter: blur(8px);
     transition: opacity 0.3s ease-in-out;
     display: flex;

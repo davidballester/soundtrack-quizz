@@ -12,16 +12,31 @@ import {
   PaginationPrevTrigger,
   PaginationRoot,
 } from "./ui/pagination";
+import { QuizzSuccess } from "./quizzSuccess";
 
-export function Quizz({ length = 10 }: { length?: number }) {
+export function Quizz({
+  onResolved,
+  length = 10,
+}: {
+  onResolved: () => void;
+  length?: number;
+}) {
   const quizz = useQuizz({ length });
+  const [resolved, setResolved] = useState<number>(0);
   const [currentQuizEntryIndex, setCurrentQuizzEntryIndex] =
     useState<number>(0);
+  useEffect(() => {
+    if (!quizz || resolved !== quizz.length) {
+      return;
+    }
+    onResolved();
+  }, [onResolved, resolved, quizz]);
   if (!quizz) {
     return <LoadingQuizz />;
   }
   return (
     <PlayerProvider>
+      {resolved === quizz.length ? <QuizzSuccess /> : null}
       <Flex direction="column" gap="8" align="center">
         {quizz.map((quizzEntry, index) => (
           <Box
@@ -30,9 +45,7 @@ export function Quizz({ length = 10 }: { length?: number }) {
           >
             <QuizzEntry
               quizzEntry={quizzEntry}
-              onResolved={() => {
-                /* TODO */
-              }}
+              onResolved={() => setResolved(resolved + 1)}
             />
           </Box>
         ))}
