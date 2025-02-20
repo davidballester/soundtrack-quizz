@@ -23,7 +23,7 @@ export default function Home() {
             transition: "opacity 0.3s ease-out",
           }}
           size="2xl"
-          colorPalette="yellow"
+          colorPalette="pink"
           variant="outline"
         >
           <LuRotateCcw /> Try again!

@@ -22,6 +22,7 @@ export function Player({
     if (!player) {
       return;
     }
+    console.log("player", videoId, "playing");
     setPlaying(true);
     player.seekTo(startAtSeconds, true);
     player.playVideo();
@@ -38,7 +39,10 @@ export function Player({
   }, [player, started]);
   return (
     <Box display="grid">
-      <Box gridArea="1 / 1">
+      <Box
+        gridArea="1 / 1"
+        clipPath={resolved ? "none" : "ellipse(40px 30px at center)"}
+      >
         <iframe
           id={videoId}
           width="100%"
@@ -58,12 +62,14 @@ export function Player({
         gridArea="1 / 1"
       >
         <Button
+          variant="subtle"
+          colorPalette="pink"
           size="2xl"
           onClick={play}
           disabled={resolved || playing || !ready}
           loading={playing || !ready}
           title="Play"
-          style={{ cursor: "pointer" }}
+          opacity={1}
         >
           <LuPlay />
         </Button>
