@@ -5,6 +5,7 @@ export interface IQuizzDatabaseEntry {
   videoId: string;
   durationInSeconds?: number;
   startAtSeconds?: number;
+  focus?: boolean;
 }
 
 export type IQuizz = IQuizzDatabaseEntry[];

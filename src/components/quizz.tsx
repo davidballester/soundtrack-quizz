@@ -116,8 +116,12 @@ function useQuizzDatabase(): IQuizzDatabase | null {
   const [quizz, setQuizz] = useState<IQuizzDatabase | null>(null);
   useEffect(() => {
     fetch("/quizz.json").then(async (response) => {
-      const quizz = await response.json();
-      setQuizz(quizz);
+      const quizz = (await response.json()) as IQuizzDatabase;
+      if (quizz.some(({ focus }) => focus)) {
+        setQuizz(quizz.filter(({ focus }) => focus));
+      } else {
+        setQuizz(quizz);
+      }
     });
   }, [setQuizz]);
   return quizz;
