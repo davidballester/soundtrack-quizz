@@ -38,7 +38,7 @@ export function Quizz({
       }
       if (event.key === "ArrowRight") {
         setCurrentQuizzEntryIndex((value) =>
-          value < quizz.length - 2 ? value + 1 : value
+          value < quizz.length - 1 ? value + 1 : value
         );
       } else if (event.key === "ArrowLeft") {
         setCurrentQuizzEntryIndex((value) => (value > 0 ? value - 1 : value));

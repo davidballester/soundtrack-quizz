@@ -14,7 +14,7 @@ export default function Home() {
           Guess the TV show!
         </Text>
       </Box>
-      <Quizz length={3} onResolved={() => setShowTryAgain(true)} />
+      <Quizz length={5} onResolved={() => setShowTryAgain(true)} />
       <Flex justifyContent="center">
         <Button
           onClick={() => window.location.reload()}
