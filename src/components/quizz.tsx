@@ -1,18 +1,13 @@
 "use client";
 
-import { Box, Flex, HStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Box, Flex } from "@chakra-ui/react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { LoadingQuizz } from "./loadingQuizz";
-import { IQuizz, IQuizzDatabase } from "@/models/quizz";
+import { IQuizz, IQuizzDatabase, IQuizzState } from "@/models/quizz";
 import { QuizzEntry } from "./quizzEntry";
 import { PlayerProvider } from "./playerProvider";
-import {
-  PaginationItems,
-  PaginationNextTrigger,
-  PaginationPrevTrigger,
-  PaginationRoot,
-} from "./ui/pagination";
 import { QuizzSuccess } from "./quizzSuccess";
+import { QuizzControls } from "./quizzControls";
 
 export function Quizz({
   onResolved,
@@ -22,37 +17,22 @@ export function Quizz({
   length?: number;
 }) {
   const quizz = useQuizz({ length });
-  const [resolved, setResolved] = useState<number>(0);
-  const [currentQuizEntryIndex, setCurrentQuizzEntryIndex] =
-    useState<number>(0);
+  const [quizzState, setQuizzState] = useQuizzState({ quizz });
+  const resolved =
+    quizzState.entries.length > 0 &&
+    quizzState.entries.every(({ resolved }) => resolved);
   useEffect(() => {
-    if (!quizz || resolved !== quizz.length) {
+    if (!resolved) {
       return;
     }
     onResolved();
-  }, [onResolved, resolved, quizz]);
-  useEffect(() => {
-    const eventListener = (event: KeyboardEvent) => {
-      if (!quizz) {
-        return;
-      }
-      if (event.key === "ArrowRight") {
-        setCurrentQuizzEntryIndex((value) =>
-          value < quizz.length - 1 ? value + 1 : value
-        );
-      } else if (event.key === "ArrowLeft") {
-        setCurrentQuizzEntryIndex((value) => (value > 0 ? value - 1 : value));
-      }
-    };
-    document.addEventListener("keyup", eventListener);
-    return () => document.removeEventListener("keyup", eventListener);
-  }, [setCurrentQuizzEntryIndex, quizz]);
+  }, [onResolved, resolved]);
   if (!quizz) {
     return <LoadingQuizz />;
   }
   return (
     <PlayerProvider>
-      {resolved === quizz.length ? <QuizzSuccess /> : null}
+      {resolved ? <QuizzSuccess /> : null}
       <Box display="grid">
         <Box gridArea="1 / 1">
           <LoadingQuizz />
@@ -62,27 +42,55 @@ export function Quizz({
             {quizz.map((quizzEntry, index) => (
               <Box
                 key={quizzEntry.videoId}
-                hidden={index !== currentQuizEntryIndex}
+                hidden={index !== quizzState?.currentEntryIndex}
                 w="full"
               >
                 <QuizzEntry
                   quizzEntry={quizzEntry}
-                  onResolved={() => setResolved(resolved + 1)}
+                  onResolved={() => {
+                    setQuizzState({
+                      ...quizzState,
+                      entries: quizzState.entries.map((entry, i) =>
+                        i === index
+                          ? { attempts: entry.attempts + 1, resolved: true }
+                          : entry
+                      ),
+                    });
+                  }}
+                  onFailedAttempt={() => {
+                    setQuizzState({
+                      ...quizzState,
+                      entries: quizzState.entries.map((entry, i) =>
+                        i === index
+                          ? { attempts: entry.attempts + 1, resolved: false }
+                          : entry
+                      ),
+                    });
+                  }}
                 />
               </Box>
             ))}
-            <PaginationRoot
-              count={quizz.length}
-              pageSize={1}
-              page={currentQuizEntryIndex + 1}
-              onPageChange={(e) => setCurrentQuizzEntryIndex(e.page - 1)}
-            >
-              <HStack>
-                <PaginationPrevTrigger />
-                <PaginationItems />
-                <PaginationNextTrigger />
-              </HStack>
-            </PaginationRoot>
+            <QuizzControls
+              state={quizzState}
+              onClick={(index) => {
+                setQuizzState({
+                  ...quizzState,
+                  currentEntryIndex: index,
+                });
+              }}
+              onNext={() =>
+                setQuizzState({
+                  ...quizzState,
+                  currentEntryIndex: quizzState.currentEntryIndex + 1,
+                })
+              }
+              onPrev={() =>
+                setQuizzState({
+                  ...quizzState,
+                  currentEntryIndex: quizzState.currentEntryIndex - 1,
+                })
+              }
+            />
           </Flex>
         </Box>
       </Box>
@@ -113,6 +121,27 @@ function useQuizzDatabase(): IQuizzDatabase | null {
     });
   }, [setQuizz]);
   return quizz;
+}
+
+function useQuizzState({
+  quizz,
+}: {
+  quizz: IQuizz | null;
+}): [IQuizzState, Dispatch<SetStateAction<IQuizzState>>] {
+  const [quizzState, setQuizzState] = useState<IQuizzState>({
+    currentEntryIndex: 0,
+    entries: [],
+  });
+  useEffect(() => {
+    if (!quizz) {
+      return;
+    }
+    setQuizzState({
+      currentEntryIndex: 0,
+      entries: quizz.map(() => ({ attempts: 0, resolved: false })),
+    });
+  }, [quizz]);
+  return [quizzState, setQuizzState];
 }
 
 function shuffle<T>(array: T[]): T[] {

@@ -8,3 +8,13 @@ export interface IQuizzDatabaseEntry {
 }
 
 export type IQuizz = IQuizzDatabaseEntry[];
+
+export interface IQuizzState {
+  currentEntryIndex: number;
+  entries: IQuizzEntryState[];
+}
+
+export interface IQuizzEntryState {
+  resolved: boolean;
+  attempts: number;
+}

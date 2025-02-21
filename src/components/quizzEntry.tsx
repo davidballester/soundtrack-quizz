@@ -1,7 +1,7 @@
 import { IQuizzDatabaseEntry } from "@/models/quizz";
 import { Player } from "./player";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Box, Button, Flex, Input } from "@chakra-ui/react";
+import { useCallback, useRef, useState } from "react";
+import { Button, Flex, Input } from "@chakra-ui/react";
 import { Field } from "./ui/field";
 import { InputGroup } from "./ui/input-group";
 import { LuBadge, LuBadgeCheck, LuBadgeX, LuLightbulb } from "react-icons/lu";
@@ -9,9 +9,11 @@ import { LuBadge, LuBadgeCheck, LuBadgeX, LuLightbulb } from "react-icons/lu";
 export function QuizzEntry({
   quizzEntry,
   onResolved,
+  onFailedAttempt,
 }: {
   quizzEntry: IQuizzDatabaseEntry;
   onResolved: () => void;
+  onFailedAttempt: () => void;
 }) {
   const [guess, setGuess] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
@@ -26,6 +28,7 @@ export function QuizzEntry({
         onResolved();
       } else {
         setError(true);
+        onFailedAttempt();
       }
     },
     [setError, onResolved]
