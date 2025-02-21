@@ -65,6 +65,7 @@ export function QuizzEntry({
               setError(false);
             }}
             onKeyUp={(event) => {
+              event.stopPropagation();
               if (event.key !== "Enter") {
                 return;
               }

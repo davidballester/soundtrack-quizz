@@ -31,6 +31,22 @@ export function Quizz({
     }
     onResolved();
   }, [onResolved, resolved, quizz]);
+  useEffect(() => {
+    const eventListener = (event: KeyboardEvent) => {
+      if (!quizz) {
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        setCurrentQuizzEntryIndex((value) =>
+          value < quizz.length - 2 ? value + 1 : value
+        );
+      } else if (event.key === "ArrowLeft") {
+        setCurrentQuizzEntryIndex((value) => (value > 0 ? value - 1 : value));
+      }
+    };
+    document.addEventListener("keyup", eventListener);
+    return () => document.removeEventListener("keyup", eventListener);
+  }, [setCurrentQuizzEntryIndex, quizz]);
   if (!quizz) {
     return <LoadingQuizz />;
   }
@@ -58,7 +74,7 @@ export function Quizz({
             <PaginationRoot
               count={quizz.length}
               pageSize={1}
-              defaultPage={1}
+              page={currentQuizEntryIndex + 1}
               onPageChange={(e) => setCurrentQuizzEntryIndex(e.page - 1)}
             >
               <HStack>
