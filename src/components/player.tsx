@@ -10,11 +10,13 @@ export function Player({
   videoId,
   startAtSeconds = 15,
   durationInSeconds = 3,
+  onPlay,
 }: {
   resolved: boolean;
   videoId: string;
   startAtSeconds?: number;
   durationInSeconds?: number;
+  onPlay: () => void;
 }) {
   const [playing, setPlaying] = useState<boolean>(false);
   const { player, ready, started } = usePlayer({ videoId });
@@ -23,6 +25,7 @@ export function Player({
       return;
     }
     console.log("player", videoId, "playing");
+    onPlay();
     setPlaying(true);
     player.seekTo(startAtSeconds, true);
     player.playVideo();

@@ -30,6 +30,7 @@ export function QuizzEntry({
     },
     [setError, onResolved]
   );
+  const ref = useRef<HTMLInputElement>(null);
   return (
     <Flex direction="column" gap="4" w="full">
       <Player
@@ -37,6 +38,12 @@ export function QuizzEntry({
         videoId={quizzEntry.videoId}
         durationInSeconds={quizzEntry.durationInSeconds}
         startAtSeconds={quizzEntry.startAtSeconds}
+        onPlay={() => {
+          if (!ref.current) {
+            return;
+          }
+          ref.current.focus();
+        }}
       ></Player>
       <Field invalid={error}>
         <InputGroup
@@ -57,6 +64,7 @@ export function QuizzEntry({
           width="full"
         >
           <Input
+            ref={ref}
             placeholder="Guess the TV series"
             size="lg"
             value={guess}
