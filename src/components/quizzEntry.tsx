@@ -9,7 +9,7 @@ import {
   LuBadgeCheck,
   LuBadgeX,
   LuFlag,
-  LuLightbulb,
+  LuSearch,
 } from "react-icons/lu";
 
 export function QuizzEntry({
@@ -69,7 +69,7 @@ export function QuizzEntry({
               variant="ghost"
               disabled={resolved}
             >
-              <LuLightbulb />
+              <LuSearch />
             </Button>
           }
           width="full"

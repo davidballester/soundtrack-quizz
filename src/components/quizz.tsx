@@ -8,6 +8,7 @@ import { QuizzEntry } from "./quizzEntry";
 import { PlayerProvider } from "./playerProvider";
 import { QuizzSuccess } from "./quizzSuccess";
 import { QuizzControls } from "./quizzControls";
+import { Advices } from "./advices";
 
 export function Quizz({
   onResolved,
@@ -115,6 +116,9 @@ export function Quizz({
             ))}
           </Flex>
         </Box>
+      </Box>
+      <Box mt="6">
+        <Advices />
       </Box>
     </PlayerProvider>
   );
