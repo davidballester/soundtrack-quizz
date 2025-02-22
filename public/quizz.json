@@ -60,8 +60,8 @@
   },
   {
     "show": "frasier",
-    "videoId": "GpemacqzdtE",
-    "startAtSeconds": 10
+    "videoId": "ml5U0sKe1mU",
+    "startAtSeconds": 19
   },
   {
     "show": "seinfeld",
@@ -69,7 +69,8 @@
   },
   {
     "show": "lost",
-    "videoId": "9LDh8DefWpI"
+    "videoId": "9LDh8DefWpI",
+    "startAtSeconds": 5
   },
   {
     "show": "sesame street",
@@ -93,7 +94,7 @@
   },
   {
     "show": "the x-files",
-    "videoId": "Vpqffgak7To"
+    "videoId": "v4-GcS1UQyg"
   },
   {
     "show": "the golden girls",
@@ -141,10 +142,6 @@
     "videoId": "s7L2PVdrb_8"
   },
   {
-    "show": "the o.c.",
-    "videoId": "CN_ekku9jAM"
-  },
-  {
     "show": "friends",
     "videoId": "64cjM6VL-OI"
   },
@@ -155,5 +152,189 @@
   {
     "show": "the twilight zone",
     "videoId": "5ymjp2uIBws"
+  },
+  {
+    "show": "dexter",
+    "videoId": "ej8-Rqo-VT4",
+    "startAtSeconds": 16
+  },
+  {
+    "show": "severance",
+    "videoId": "uKT5bwMkOAw"
+  },
+  {
+    "show": "bojack horseman",
+    "videoId": "rQvIR1oL1vE"
+  },
+  {
+    "show": "the white lotus",
+    "videoId": "0fN7JGL0Pzc"
+  },
+  {
+    "show": "futurama",
+    "videoId": "4J3CizdYbBI"
+  },
+  {
+    "show": "narcos",
+    "videoId": "PtJ6yAGjsIs"
+  },
+  {
+    "show": "narcos",
+    "videoId": "PtJ6yAGjsIs"
+  },
+  {
+    "show": "true blood",
+    "videoId": "vxINMuOgAu8"
+  },
+  {
+    "show": "breaking bad",
+    "videoId": "F1HNuAE9WdU",
+    "startAtSeconds": 5
+  },
+  {
+    "show": "full house",
+    "videoId": "2EL65KLdEHE"
+  },
+  {
+    "show": "the a-team",
+    "videoId": "N1HMCArgqWM",
+    "startAtSeconds": 30
+  },
+  {
+    "show": "house of cards",
+    "videoId": "9w-O60x1bYk"
+  },
+  {
+    "show": "baywatch",
+    "videoId": "PldT2jq7ApM"
+  },
+  {
+    "show": "house",
+    "videoId": "a6zJ9dEwNek"
+  },
+  {
+    "show": "south park",
+    "videoId": "tG4dOOiGV7U"
+  },
+  {
+    "show": "better call saul",
+    "videoId": "qcJ3fqWT3a0"
+  },
+  {
+    "show": "six feet under",
+    "videoId": "KYAe0qwg9Yw"
+  },
+  {
+    "show": "batman",
+    "videoId": "iI2mhvadTlY",
+    "startAtSeconds": 5
+  },
+  {
+    "show": "fringe",
+    "videoId": "cKHc7pKZdj0"
+  },
+  {
+    "show": "dawson's creek",
+    "videoId": "5eTfniWEVTY"
+  },
+  {
+    "show": "rome",
+    "videoId": "8YDngmnixSc"
+  },
+  {
+    "show": "boardwalk empire",
+    "videoId": "MVD8VIuX0bA"
+  },
+  {
+    "show": "scrubs",
+    "videoId": "kBz1vvlkzSw",
+    "startAtSeconds": 5
+  },
+  {
+    "show": "the americans",
+    "videoId": "20sAhKwWeJQ"
+  },
+  {
+    "show": "melrose place",
+    "videoId": "b5oc2pzqLHY"
+  },
+  {
+    "show": "prison break",
+    "videoId": "Kf5iMutDjfE"
+  },
+  {
+    "show": "homeland",
+    "videoId": "xiQxuJo6NRM"
+  },
+  {
+    "show": "looney tunes",
+    "videoId": "Eq0HbU9jVAg",
+    "startAtSeconds": 8
+  },
+  {
+    "show": "er",
+    "videoId": "O1V3XbkrdOw"
+  },
+  {
+    "show": "alf",
+    "videoId": "Eo5tBDXyQno"
+  },
+  {
+    "show": "charmed",
+    "videoId": "ujaTyXwT1Vw"
+  },
+  {
+    "show": "westworld",
+    "videoId": "ZgvXU5R-xWs",
+    "startAtSeconds": 30
+  },
+  {
+    "show": "cosmos",
+    "videoId": "MoegC90zVLk",
+    "startAtSeconds": 38
+  },
+  {
+    "show": "family guy",
+    "videoId": "WJOAvttDJ-Q",
+    "startAtSeconds": 10
+  },
+  {
+    "show": "true detective",
+    "videoId": "FxXRkqXfhYM"
+  },
+  {
+    "show": "ted lasso",
+    "videoId": "PHoCM31_jbM",
+    "startAtSeconds": 8
+  },
+  {
+    "show": "the office",
+    "videoId": "4iisysmwB_k"
+  },
+  {
+    "show": "vikings",
+    "videoId": "gmyCRJkKeKs"
+  },
+  {
+    "show": "peaky blinders",
+    "videoId": "Be56k1Ui2Yg"
+  },
+  {
+    "show": "modern family",
+    "videoId": "oOxSn-gjMF0",
+    "startAtSeconds": 5
+  },
+  {
+    "show": "band of brothers",
+    "videoId": "r1DosMJafGk"
+  },
+  {
+    "show": "bluey",
+    "videoId": "JXOTmWl5t3A",
+    "startAtSeconds": 3
+  },
+  {
+    "show": "sherlock",
+    "videoId": "Pk2FME6HVdA"
   }
 ]
