@@ -34,6 +34,7 @@ export function QuizzEntry({
       if (isCorrect) {
         setResolved(true);
         onResolved();
+        ref.current?.blur();
       } else {
         setError(true);
         onFailedAttempt();
@@ -102,6 +103,7 @@ export function QuizzEntry({
         onClick={() => {
           onGiveUp();
           setResolved(true);
+          ref.current?.blur();
         }}
         variant="ghost"
         w="auto"
