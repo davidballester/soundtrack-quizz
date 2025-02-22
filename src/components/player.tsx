@@ -49,13 +49,11 @@ export function Player({
         <iframe
           id={videoId}
           width="100%"
-          src={`http://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=0&controls=0&fs=0&playsinline=1&disablekb=1&color=white`}
-          style={{ border: "none", aspectRatio: "16 / 9" }}
+          src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1&origin=${location.origin}&autoplay=0&controls=0&fs=0&playsinline=1&disablekb=1&color=white`}
+          style={{ aspectRatio: "16 / 9" }}
         ></iframe>
       </Box>
       <Flex
-        w="full"
-        h="full"
         background="gray.900"
         opacity={resolved ? 0 : 1}
         transition="opacity 0.2s ease-out"

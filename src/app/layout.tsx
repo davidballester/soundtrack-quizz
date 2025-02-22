@@ -1,7 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Provider } from "@/components/ui/provider";
 import { Box, Container, Flex, Link, Text } from "@chakra-ui/react";
 import { LuGithub } from "react-icons/lu";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Guess the TV show",
@@ -14,7 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      style={{ WebkitTextSizeAdjust: "100%" }}
+    >
       <body>
         <Provider>
           <Container maxW="lg">
