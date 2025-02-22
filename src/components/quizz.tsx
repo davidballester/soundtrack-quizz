@@ -34,42 +34,11 @@ export function Quizz({
     <PlayerProvider>
       {resolved ? <QuizzSuccess /> : null}
       <Box display="grid">
-        <Box gridArea="1 / 1">
+        <Box gridArea="1 / 1" mt="9">
           <LoadingQuizz />
         </Box>
         <Box gridArea="1 / 1">
           <Flex direction="column" gap="8" align="center">
-            {quizz.map((quizzEntry, index) => (
-              <Box
-                key={quizzEntry.videoId}
-                hidden={index !== quizzState?.currentEntryIndex}
-                w="full"
-              >
-                <QuizzEntry
-                  quizzEntry={quizzEntry}
-                  onResolved={() => {
-                    setQuizzState({
-                      ...quizzState,
-                      entries: quizzState.entries.map((entry, i) =>
-                        i === index
-                          ? { attempts: entry.attempts + 1, resolved: true }
-                          : entry
-                      ),
-                    });
-                  }}
-                  onFailedAttempt={() => {
-                    setQuizzState({
-                      ...quizzState,
-                      entries: quizzState.entries.map((entry, i) =>
-                        i === index
-                          ? { attempts: entry.attempts + 1, resolved: false }
-                          : entry
-                      ),
-                    });
-                  }}
-                />
-              </Box>
-            ))}
             <QuizzControls
               state={quizzState}
               onClick={(index) => {
@@ -91,6 +60,59 @@ export function Quizz({
                 })
               }
             />
+            {quizz.map((quizzEntry, index) => (
+              <Box
+                key={quizzEntry.videoId}
+                hidden={index !== quizzState?.currentEntryIndex}
+                w="full"
+              >
+                <QuizzEntry
+                  quizzEntry={quizzEntry}
+                  onResolved={() => {
+                    setQuizzState({
+                      ...quizzState,
+                      entries: quizzState.entries.map((entry, i) =>
+                        i === index
+                          ? {
+                              ...entry,
+                              attempts: entry.attempts + 1,
+                              resolved: true,
+                            }
+                          : entry
+                      ),
+                    });
+                  }}
+                  onFailedAttempt={() => {
+                    setQuizzState({
+                      ...quizzState,
+                      entries: quizzState.entries.map((entry, i) =>
+                        i === index
+                          ? {
+                              ...entry,
+                              attempts: entry.attempts + 1,
+                              resolved: false,
+                            }
+                          : entry
+                      ),
+                    });
+                  }}
+                  onGiveUp={() => {
+                    setQuizzState({
+                      ...quizzState,
+                      entries: quizzState.entries.map((entry, i) =>
+                        i === index
+                          ? {
+                              ...entry,
+                              resolved: true,
+                              givenUp: true,
+                            }
+                          : entry
+                      ),
+                    });
+                  }}
+                />
+              </Box>
+            ))}
           </Flex>
         </Box>
       </Box>
@@ -142,7 +164,11 @@ function useQuizzState({
     }
     setQuizzState({
       currentEntryIndex: 0,
-      entries: quizz.map(() => ({ attempts: 0, resolved: false })),
+      entries: quizz.map(() => ({
+        attempts: 0,
+        resolved: false,
+        givenUp: false,
+      })),
     });
   }, [quizz]);
   return [quizzState, setQuizzState];

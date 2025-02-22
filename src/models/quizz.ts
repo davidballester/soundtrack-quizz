@@ -17,5 +17,6 @@ export interface IQuizzState {
 
 export interface IQuizzEntryState {
   resolved: boolean;
+  givenUp: boolean;
   attempts: number;
 }

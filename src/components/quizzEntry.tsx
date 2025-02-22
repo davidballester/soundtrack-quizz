@@ -4,15 +4,23 @@ import { useCallback, useRef, useState } from "react";
 import { Button, Flex, Input } from "@chakra-ui/react";
 import { Field } from "./ui/field";
 import { InputGroup } from "./ui/input-group";
-import { LuBadge, LuBadgeCheck, LuBadgeX, LuLightbulb } from "react-icons/lu";
+import {
+  LuBadge,
+  LuBadgeCheck,
+  LuBadgeX,
+  LuFlag,
+  LuLightbulb,
+} from "react-icons/lu";
 
 export function QuizzEntry({
   quizzEntry,
   onResolved,
+  onGiveUp,
   onFailedAttempt,
 }: {
   quizzEntry: IQuizzDatabaseEntry;
   onResolved: () => void;
+  onGiveUp: () => void;
   onFailedAttempt: () => void;
 }) {
   const [guess, setGuess] = useState<string>("");
@@ -89,6 +97,17 @@ export function QuizzEntry({
           />
         </InputGroup>
       </Field>
+      <Button
+        opacity={resolved ? 0 : 1}
+        onClick={() => {
+          onGiveUp();
+          setResolved(true);
+        }}
+        variant="ghost"
+        w="auto"
+      >
+        <LuFlag /> I give up!
+      </Button>
     </Flex>
   );
 }

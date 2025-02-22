@@ -72,7 +72,13 @@ function QuizzControl({
       variant={isActive ? "solid" : "outline"}
       onClick={onClick}
       colorPalette={
-        state.resolved ? "green" : state.attempts > 0 ? "red" : undefined
+        state.givenUp
+          ? "yellow"
+          : state.resolved
+          ? "green"
+          : state.attempts > 0
+          ? "red"
+          : undefined
       }
     >
       {state.attempts > 0 ? state.attempts : ""}
