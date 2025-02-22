@@ -35,6 +35,7 @@ export default function RootLayout({
                 alignItems="center"
                 justifyContent="center"
                 gap="3"
+                mt="6"
               >
                 <Link
                   href="https://github.com/davidballester/soundtrack-quizz"
